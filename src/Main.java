@@ -154,11 +154,11 @@ public class Main {
                 listUseless.add(name);
                 countMark++;
 //              打印日志
-                System.out.println("检测到 "+  file.getName() + " 图片未使用，已移动");
+                System.out.println("检测到 "+  file.getName() + " 图片未使用，已移动到该图片目录下 无效图片 文件夹");
 
 
                 //System.out.println(file.getParent()+"\\"+file.getName());
-
+/*
                 //移动无效图片到 无效图片 文件夹
                 File fileMakeDir = new File(file.getParent()+"\\无效图片\\");
                 fileMakeDir.mkdir();
@@ -167,6 +167,7 @@ public class Main {
                 oldName.renameTo(newName);
                 //移动完毕后删除无效的图片
                 file.delete();
+ */
             }
         }
 
@@ -181,6 +182,8 @@ public class Main {
         System.out.printf("→  目录 %s 遍历完成,遍历 %d 个图片; %d 个图片仍在使用,删除 %d 个图片  ←\n",
                 files[0].getParent(), pictureList1.size(), listUsing.size(), listUseless.size());
         System.out.println("--------------------typora无效图片删除程序--------------------");
+        System.out.println();
+        System.out.println();
     }
 
     public static String patch(String input) {
