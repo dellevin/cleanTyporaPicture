@@ -1,19 +1,19 @@
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import java.io.IOException;
 
 public class Show  extends JFrame implements  buttonOperation  {
+
     public static void main(String[] args) throws FileNotFoundException {
+
         //引入第三方依赖 JFrame美化
         FlatLightLaf.install();
         try {
@@ -21,11 +21,11 @@ public class Show  extends JFrame implements  buttonOperation  {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
-
 //        String input  = JOptionPane.showInputDialog(null," 输入清理的路径：\n","typora清理程序",JOptionPane.PLAIN_MESSAGE);
 //        Main.showInput(input);
+        //图片相对路径
         JFrame frmMain = new JFrame("typora无效图片删除程序");
-        frmMain.setSize(500, 520);
+        frmMain.setSize(520, 509);
         frmMain.setLocation(200, 200);
         frmMain.setLayout(new FlowLayout());
 
@@ -37,40 +37,54 @@ public class Show  extends JFrame implements  buttonOperation  {
         text.setBackground(Color.lightGray);//设置文本域背景颜色
         text.setForeground(Color.BLACK);//设置文字颜色
         text.setPreferredSize(new Dimension(300, 20));
+        frmMain.add(pathInput);
+        frmMain.add(text);
 
+        JLabel temp = new JLabel("                            ");
+        temp.setVisible(true);
+        frmMain.add(temp);
         //选择文件按钮
         JButton selectbtnOK = new JButton("选择路径");
         selectbtnOK.setPreferredSize(new Dimension(90, 25));
         selectbtnOK.setLocation(50, 50);
-
         //按钮
         JButton btnOK = new JButton("开始执行");
         btnOK.setPreferredSize(new Dimension(90, 25));
         btnOK.setLocation(50, 50);
-
         //按钮
         JButton btnSave = new JButton("保存日志");
         btnSave.setPreferredSize(new Dimension(90, 25));
         btnSave.setLocation(50, 50);
-
-        //输出日志
-        JTextArea textLog = new JTextArea("打印输出日志", 20, 43);
-        textLog.setPreferredSize(new Dimension(480, 415));
-        textLog.setBackground(Color.lightGray);//设置文本域背景颜色
-        textLog.setForeground(Color.BLACK);//设置文字颜色
-        textLog.setEditable(false);
-        //给打印日志加个滚动条子
-        JScrollPane jScrollPane = new JScrollPane();
-        jScrollPane.setViewportView(textLog);
-
-
-
-        frmMain.add(pathInput);
-        frmMain.add(text);
         frmMain.add(selectbtnOK);
         frmMain.add(btnOK);
         frmMain.add(btnSave);
+
+        JLabel temp0 = new JLabel("                                 ");
+        temp0.setVisible(true);
+        frmMain.add(temp0);
+
+        //文字
+        JLabel pathOutput = new JLabel(" 日志文件输出路径：\n\n");
+        //文本框
+        JTextArea logPath = new JTextArea();
+        logPath.setText("");
+        logPath.setBackground(Color.lightGray);//设置文本域背景颜色
+        logPath.setForeground(Color.BLACK);//设置文字颜色
+        logPath.setPreferredSize(new Dimension(400, 20));
+        frmMain.add(pathOutput);
+        frmMain.add(logPath);
+        //输出日志
+        JTextArea textLog = new JTextArea("打印输出日志", 20, 43);
+        textLog.setBackground(Color.lightGray);//设置文本域背景颜色
+        textLog.setForeground(Color.BLACK);//设置文字颜色
+        textLog.setEditable(false);
         frmMain.add(textLog);
+        //给打印日志加个滚动条子
+        JScrollPane jScrollPane = new JScrollPane(textLog);
+        jScrollPane.setBounds(13, 10, 480, 500);//这个设置了上面文本域就不要设置了，否则滚动条就不会自动适配
+        //横竖滚动条常显
+        jScrollPane.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         frmMain.add(jScrollPane);
 
         frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭界面同时进程
@@ -91,7 +105,8 @@ public class Show  extends JFrame implements  buttonOperation  {
                 else
                 {   //并保存文件
                     try {
-                        buttonOperation.fileSave(buttonOperation.showFileSaveDialog(frmMain),textLog);
+                        buttonOperation.fileSave(buttonOperation.showFileSaveDialog(frmMain,logPath),textLog);
+
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -125,9 +140,7 @@ public class Show  extends JFrame implements  buttonOperation  {
                     try {
                         //运行程序
                         Main.showInput(inputPath);
-
                         //下面写将日志输入到 textLog 文本域中
-
                         String resultText= String.valueOf(buttonOperation.fileResult("src/log.txt"));
                         //更新文本显示区内容
                         textLog.setText("");//先清空

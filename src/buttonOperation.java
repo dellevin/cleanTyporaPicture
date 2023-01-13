@@ -37,7 +37,7 @@ public interface buttonOperation {
     /*
      * 选择文件保存路径
      */
-    static String showFileSaveDialog(Component parent) {
+    static String showFileSaveDialog(Component parent,JTextArea msgTextArea) {
         // 创建一个默认的文件选取器
         JFileChooser fileChooser = new JFileChooser();
         // 设置打开文件选择框后默认输入的文件名
@@ -47,7 +47,8 @@ public interface buttonOperation {
         if (result == JFileChooser.APPROVE_OPTION) {
             // 如果点击了"保存", 则获取选择的保存路径
             File file = fileChooser.getSelectedFile();
-            //msgTextArea.setText("");
+            msgTextArea.setText("");
+            msgTextArea.setText(file.getAbsolutePath());
             return  file.getAbsolutePath();
         }
         return null;
