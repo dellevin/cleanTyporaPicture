@@ -158,7 +158,7 @@ public class Main {
 
 
                 //System.out.println(file.getParent()+"\\"+file.getName());
-/*
+
                 //移动无效图片到 无效图片 文件夹
                 File fileMakeDir = new File(file.getParent()+"\\无效图片\\");
                 fileMakeDir.mkdir();
@@ -167,7 +167,7 @@ public class Main {
                 oldName.renameTo(newName);
                 //移动完毕后删除无效的图片
                 file.delete();
- */
+
             }
         }
 
