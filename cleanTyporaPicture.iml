@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="flatlaf-1.6.5" level="project" />
+    <orderEntry type="library" exported="" name="flatlaf-1.6.5-sources" level="project" />
   </component>
 </module>

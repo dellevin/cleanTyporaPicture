@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
@@ -38,18 +37,17 @@ public interface buttonOperation {
     /*
      * 选择文件保存路径
      */
-    static String showFileSaveDialog(Component parent, JTextArea msgTextArea) {
+    static String showFileSaveDialog(Component parent) {
         // 创建一个默认的文件选取器
         JFileChooser fileChooser = new JFileChooser();
         // 设置打开文件选择框后默认输入的文件名
-        fileChooser.setSelectedFile(new File("Log.txt"));
+        fileChooser.setSelectedFile(new File("TyporaCleanPictureLog.txt"));
         // 打开文件选择框（线程将被阻塞, 直到选择框被关闭）
         int result = fileChooser.showSaveDialog(parent);
         if (result == JFileChooser.APPROVE_OPTION) {
             // 如果点击了"保存", 则获取选择的保存路径
             File file = fileChooser.getSelectedFile();
             //msgTextArea.setText("");
-            msgTextArea.append("日志文件保存为:   "+file.getAbsolutePath());
             return  file.getAbsolutePath();
         }
         return null;

@@ -1,16 +1,29 @@
+
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import java.io.IOException;
 
 public class Show  extends JFrame implements  buttonOperation  {
     public static void main(String[] args) throws FileNotFoundException {
+        //引入第三方依赖 JFrame美化
+        FlatLightLaf.install();
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
+
 //        String input  = JOptionPane.showInputDialog(null," 输入清理的路径：\n","typora清理程序",JOptionPane.PLAIN_MESSAGE);
 //        Main.showInput(input);
-
         JFrame frmMain = new JFrame("typora无效图片删除程序");
         frmMain.setSize(500, 520);
         frmMain.setLocation(200, 200);
@@ -21,6 +34,8 @@ public class Show  extends JFrame implements  buttonOperation  {
         //文本框
         JTextArea text = new JTextArea();
         text.setText("");
+        text.setBackground(Color.lightGray);//设置文本域背景颜色
+        text.setForeground(Color.BLACK);//设置文字颜色
         text.setPreferredSize(new Dimension(300, 20));
 
         //选择文件按钮
@@ -40,11 +55,13 @@ public class Show  extends JFrame implements  buttonOperation  {
 
         //输出日志
         JTextArea textLog = new JTextArea("打印输出日志", 20, 43);
-        textLog.setPreferredSize(new Dimension(470, 415));
+        textLog.setPreferredSize(new Dimension(480, 415));
+        textLog.setBackground(Color.lightGray);//设置文本域背景颜色
+        textLog.setForeground(Color.BLACK);//设置文字颜色
         textLog.setEditable(false);
         //给打印日志加个滚动条子
-        JScrollPane jScrollPane = new JScrollPane(textLog);
-
+        JScrollPane jScrollPane = new JScrollPane();
+        jScrollPane.setViewportView(textLog);
 
 
 
@@ -55,6 +72,7 @@ public class Show  extends JFrame implements  buttonOperation  {
         frmMain.add(btnSave);
         frmMain.add(textLog);
         frmMain.add(jScrollPane);
+
         frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭界面同时进程
         frmMain.setVisible(true);//设置窗口可见
         frmMain.setResizable(false);//设置不能调整大小
@@ -71,17 +89,13 @@ public class Show  extends JFrame implements  buttonOperation  {
                     JOptionPane.showMessageDialog(null, "日志还没有呢!", "什么操作？", JOptionPane.ERROR_MESSAGE);
                 }
                 else
-                {   //文本域显示log文件路径,并保存文件
+                {   //并保存文件
                     try {
-                        buttonOperation.fileSave(buttonOperation.showFileSaveDialog(frmMain,textLog),textLog);
+                        buttonOperation.fileSave(buttonOperation.showFileSaveDialog(frmMain),textLog);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-
-
                 }
-
-
             }
         });
         //选择文件路径监听
