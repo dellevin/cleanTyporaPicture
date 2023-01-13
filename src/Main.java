@@ -25,9 +25,14 @@ public class Main {
     }
 
     public static void showInput(String inputString) throws FileNotFoundException {
-        PrintStream ps = new PrintStream("src/log.txt");
+        File directory = new File("");
+        //获取当前路径
+        File pathTemp = new File(directory.getAbsolutePath() + "\\src");
+        //创建文件夹
+        pathTemp.mkdir();
+        //写入日志文件
+        PrintStream ps = new PrintStream(directory.getAbsolutePath()+"\\src\\log.txt");
         System.setOut(ps);
-
         String path = inputString;
         //System.out.println(path);
         //String path = "D:\\OneDriveData\\OneDrive - wonder1999\\Note\\Levin-DailyNote\\技术笔记\\C_C++_C Sharp";
