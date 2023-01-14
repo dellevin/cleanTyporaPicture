@@ -17,7 +17,7 @@ public class Main {
         String pathtemp = sc.nextLine();
         String path = pathtemp;
         //System.out.println(path);
-        //String path = "D:\\OneDriveData\\OneDrive - wonder1999\\Note\\Levin-DailyNote\\技术笔记\\C_C++_C Sharp";
+        //String path = "D:\\OneDriveData\\技术笔记\\C_C++_C Sharp";
         PrintStream ps = new PrintStream("src/log.txt");
         System.setOut(ps);
         File file = new File(path);
@@ -35,11 +35,10 @@ public class Main {
         System.setOut(ps);
         String path = inputString;
         //System.out.println(path);
-        //String path = "D:\\OneDriveData\\OneDrive - wonder1999\\Note\\Levin-DailyNote\\技术笔记\\C_C++_C Sharp";
+        //String path = "D:\\OneDriveData\\技术笔记\\C_C++_C Sharp";
         File file = new File(path);
         recursivelyThroughAndDelete(file);
     }
-
     public static void recursivelyThroughAndDelete(File dir) throws FileNotFoundException {
         // 获取子文件和目
         File[] files = dir.listFiles();
@@ -160,10 +159,7 @@ public class Main {
                 countMark++;
 //              打印日志
                 System.out.println("检测到 "+  file.getName() + " 图片未使用，已移动到该图片目录下 无效图片 文件夹");
-
-
                 //System.out.println(file.getParent()+"\\"+file.getName());
-
                 //移动无效图片到 无效图片 文件夹
                 File fileMakeDir = new File(file.getParent()+"\\无效图片\\");
                 fileMakeDir.mkdir();
