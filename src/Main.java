@@ -48,7 +48,7 @@ public class Main {
         //递归遍历子目录，子文件
         /*
         判断：当是文件时，添加到List中，等待遍历
-              当是目录时，递归调用此方法，遍历下一级目录
+             当是目录时，递归调用此方法，遍历下一级目录
          */
         //需要遍历图片使用的md文件list
         List<File> list = new ArrayList<>();
@@ -110,7 +110,6 @@ public class Main {
                             pictureList1.add(listFile);
                         }
                     }
-
                 } else if (file.isFile()) { //只统计md文档目前没想出全角半角的判断
                     InputStreamReader inputStreamReader = null;
                     try {
@@ -136,8 +135,6 @@ public class Main {
                 }
             }
             System.out.println(fileTest01.getName()+".md   文件图片存储路径为  ："+files[0].getParent()+"\\assets\\"+fileTest01.getName());
-
-
         }
         System.out.println("*********************【md 图片文件存放路径】*********************");
 
