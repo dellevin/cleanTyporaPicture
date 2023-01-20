@@ -23,11 +23,15 @@ public class Show  extends JFrame implements  buttonOperation  {
         }
 //        String input  = JOptionPane.showInputDialog(null," 输入清理的路径：\n","typora清理程序",JOptionPane.PLAIN_MESSAGE);
 //        Main.showInput(input);
-        //图片相对路径
+
         JFrame frmMain = new JFrame("typora无效图片删除程序");
         frmMain.setSize(520, 509);
         frmMain.setLocation(200, 200);
         frmMain.setLayout(new FlowLayout());
+
+        //图片相对路径
+        //ImageIcon imageIcon=new ImageIcon("clean.png");
+        //frmMain.setIconImage(imageIcon.getImage());
 
         //文字
         JLabel pathInput = new JLabel(" 输入md文档路径：\n\n");

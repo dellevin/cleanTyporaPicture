@@ -19,6 +19,7 @@ public class Main {
         //System.out.println(path);
         //String path = "D:\\OneDriveData\\技术笔记\\C_C++_C Sharp";
         PrintStream ps = new PrintStream("src/log.txt");
+        //PrintStream ps = new PrintStream("log.txt");
         System.setOut(ps);
         File file = new File(path);
         recursivelyThroughAndDelete(file);
@@ -183,7 +184,6 @@ public class Main {
         System.out.println();
         System.out.println();
     }
-
     public static String patch(String input) {
         String regexStart = "(assets|assests)\\/";  //assets/或者 assest/开头   .图片格式结尾
         String regexEnd = "(assets|assests)\\/.*\\.(ai|apng|avif|bmp|cdr|dxf|eps|exif|fpx|gif|jfif|jpg|jpeg|pcd|pcx|png|psd|raw|svg|tga|tif|ufo|webp|wmf)"; //将多种文件格式 融入进正则表达式
@@ -201,4 +201,6 @@ public class Main {
         String strRes = input.substring(strStart, strEnd);
         return strRes;
     }
+
+
 }
